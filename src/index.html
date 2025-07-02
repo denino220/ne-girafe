@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giraffe Population Changes</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #fdf6ef;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    #chartContainer {
+      width: 90%;
+      max-width: 900px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Population Changes Among Giraffe Species (Historical vs. Recent)</h2>
+
+  <div id="chartContainer">
+    <canvas id="giraffeChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('giraffeChart').getContext('2d');
+
+    const giraffeChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Northern Giraffe', 'Reticulated Giraffe', 'Masai Giraffe', 'Southern Giraffe'],
+        datasets: [
+          {
+            label: 'Historical Population',
+            data: [25653, 47750, 67049, 23000],
+            backgroundColor: '#6baed6'
+          },
+          {
+            label: 'Recent Population',
+            data: [4721, 8661, 32211, 51969],
+            backgroundColor: '#969696'
+          },
+          {
+            label: 'Change in Population',
+            data: [-20932, -39089, -34838, 28969],
+            backgroundColor: '#fd8d3c'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            title: {
+              display: true,
+              text: 'Population'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
